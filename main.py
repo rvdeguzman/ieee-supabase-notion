@@ -18,21 +18,14 @@ app = FastAPI(
 )
 
 supabase_url = os.getenv("SUPABASE_URL")
-#supabase_key = os.getenv("SUPABASE_KEY")
-supabase_key = os.getenv("SUPABASE_SERVICE_ROLE_KEY")  # Use service role key for full access
+supabase_key = os.getenv("SUPABASE_SERVICE_ROLE_KEY")
 
 notion_token = os.getenv("NOTION_TOKEN")
 notion_database_id = os.getenv("NOTION_DATABASE_ID")
 
-print("Supabase URL:", supabase_url)
-print("Supabase Key:", supabase_key)
-print("Notion Token:", notion_token)
-print("Notion Database ID:", notion_database_id)
-
-
 print("Creating Supabase client...")
 if not supabase_url or not supabase_key:
-    print("Environment variables SUPABASE_URL and SUPABASE_KEY must be set.")
+    print("Environment variables SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set.")
     exit(1)
 else:
     supabase: Client = create_client(supabase_url, supabase_key)
